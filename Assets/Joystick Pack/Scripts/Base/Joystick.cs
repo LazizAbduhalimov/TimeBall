@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -33,12 +34,21 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
 
     [SerializeField] protected RectTransform background = null;
     [SerializeField] private RectTransform handle = null;
+
     private RectTransform baseRect = null;
 
     private Canvas canvas;
     private Camera cam;
 
     private Vector2 input = Vector2.zero;
+
+    // Modifications
+    [SerializeField] private Camera linkedCamera;
+
+    public Action OnPoinerDownEvent;
+    public Action OnPoinerDragEvent;
+    public Action OnPoinerUpEvent;
+
 
     protected virtual void Start()
     {
@@ -55,15 +65,22 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
         handle.anchorMax = center;
         handle.pivot = center;
         handle.anchoredPosition = Vector2.zero;
+
+        // Modified. This is for correct first touch
+        if (linkedCamera != null)
+            cam = linkedCamera;
     }
 
     public virtual void OnPointerDown(PointerEventData eventData)
     {
+        OnPoinerDownEvent?.Invoke();
         OnDrag(eventData);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
+        OnPoinerDragEvent?.Invoke();
+
         cam = null;
         if (canvas.renderMode == RenderMode.ScreenSpaceCamera)
             cam = canvas.worldCamera;
@@ -133,6 +150,8 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IDragHandler, IPoint
     {
         input = Vector2.zero;
         handle.anchoredPosition = Vector2.zero;
+
+        OnPoinerUpEvent?.Invoke();
     }
 
     protected Vector2 ScreenPointToAnchoredPosition(Vector2 screenPosition)

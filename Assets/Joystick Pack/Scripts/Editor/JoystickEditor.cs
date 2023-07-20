@@ -13,6 +13,7 @@ public class JoystickEditor : Editor
     private SerializedProperty snapY;
     protected SerializedProperty background;
     private SerializedProperty handle;
+    private SerializedProperty linkedCamera;
 
     protected Vector2 center = new Vector2(0.5f, 0.5f);
 
@@ -25,6 +26,7 @@ public class JoystickEditor : Editor
         snapY = serializedObject.FindProperty("snapY");
         background = serializedObject.FindProperty("background");
         handle = serializedObject.FindProperty("handle");
+        linkedCamera = serializedObject.FindProperty("linkedCamera");
     }
 
     public override void OnInspectorGUI()
@@ -54,6 +56,7 @@ public class JoystickEditor : Editor
         EditorGUILayout.PropertyField(axisOptions, new GUIContent("Axis Options", "Which axes the joystick uses."));
         EditorGUILayout.PropertyField(snapX, new GUIContent("Snap X", "Snap the horizontal input to a whole value."));
         EditorGUILayout.PropertyField(snapY, new GUIContent("Snap Y", "Snap the vertical input to a whole value."));
+        EditorGUILayout.PropertyField(linkedCamera, new GUIContent("Linked camera", "This is needed for correct first touch if you have separated camera for UI"));
     }
 
     protected virtual void DrawComponents()
