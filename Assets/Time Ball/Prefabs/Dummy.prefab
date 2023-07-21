@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3376836860627711637}
   - component: {fileID: 3162860045907206310}
   - component: {fileID: 2364916082519791180}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EnemyGFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 6640250492782841888}
   - component: {fileID: 8858780340369414214}
   - component: {fileID: 5967739882186983136}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Dummy
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -17,6 +17,11 @@ public class BallContoller : MonoBehaviour, IControllable
         Throw(direction.normalized);
     }
 
+    public void Die()
+    {
+        gameObject.SetActive(false);
+    }
+
     private void Throw(Vector3 direction)
     {
         var newVelocity = direction * _speed;
