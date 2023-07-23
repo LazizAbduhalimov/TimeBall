@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Turret : EnemyBase
 {
+    [Header("Unique properties")]
     [SerializeField] private Bullet _bullet;
     [SerializeField] private Transform _bulletCreateTransform;
 

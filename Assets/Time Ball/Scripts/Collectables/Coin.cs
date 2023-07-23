@@ -8,6 +8,11 @@ public class Coin : MonoBehaviour, ICollectable
     public void Collect()
     {
         Bank.AddCoins(this, amount);
-        var createdEffect = Instantiate(_collectionEffect, transform.position, Quaternion.identity);
+        CreateEffect();
+    }
+
+    private void CreateEffect()
+    {
+        Instantiate(_collectionEffect, transform.position, Quaternion.identity);
     }
 }

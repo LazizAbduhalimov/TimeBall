@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class InputController: MonoBehaviour
@@ -25,7 +26,7 @@ public class InputController: MonoBehaviour
         _joystick.OnPoinerUpEvent -= OnJoystickPointerUp;
     }
 
-    private void Start()
+    private void Awake()
     {
         _controllable = GetComponent<IControllable>();
         _tragectoryLine = GetComponent<TragectoryLineRenderer>();
@@ -44,6 +45,7 @@ public class InputController: MonoBehaviour
     {
         _direction = new Vector3(-_joystick.Vertical, 0, _joystick.Horizontal);
         _tragectoryLine.SetDirection(_direction.normalized);
+        
     }
 
     private void OnJoystickPointerUp()

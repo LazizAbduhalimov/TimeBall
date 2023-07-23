@@ -16,7 +16,7 @@ public static class TimeManager
     public static void UndoSlowmotion()
     {
         Time.timeScale = 1f;
-        Time.fixedDeltaTime = Time.fixedUnscaledDeltaTime;
+        Time.fixedDeltaTime = 0.02f;
         OnTimeUnslowedEvent?.Invoke();
     }
 }

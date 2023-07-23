@@ -4,27 +4,29 @@ public static class Bank
 {
     public static int Coins { get; private set; }
 
-    public static Action<object, int> OnCoinsValueChangedEvent;
+    public static Action<object, int, int> OnCoinsValueChangedEvent;
 
-    public static void AddCoins(object sender, int number)
+    public static void AddCoins(object sender, int coins)
     {
-        if (number < 1)
+        if (coins < 1)
             throw new ArgumentException("Number of coins should be positive");
-
-        OnCoinsValueChangedEvent?.Invoke(sender, number);
-        Coins += number;
+        
+        var oldValue = Coins;
+        Coins += coins;
+        OnCoinsValueChangedEvent?.Invoke(sender, oldValue, Coins);
     }
 
-    public static void SpendCoins(object sender, int number)
+    public static void SpendCoins(object sender, int coins)
     {
-        if (number < 1)
+        if (coins < 1)
             throw new ArgumentException("Number of coins should be positive");
 
-        if (IsEnoughCoins(number))
+        if (IsEnoughCoins(coins))
             return;
 
-        OnCoinsValueChangedEvent?.Invoke(sender, number);
-        Coins -= number;
+        var oldValue = Coins;
+        Coins -= coins;
+        OnCoinsValueChangedEvent?.Invoke(sender, oldValue, Coins);
     }
 
     public static bool IsEnoughCoins(int number)
