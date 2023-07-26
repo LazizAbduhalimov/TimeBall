@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
 
 public class InputController: MonoBehaviour
 {
+    public TimeManager _timeManager;
+
     [SerializeField] private Joystick _joystick;
 
     private TragectoryLineRenderer _tragectoryLine;
     private IControllable _controllable;
     private Vector3 _direction;
-
-    private float _slowdownFactor = 0.05f;
 
     private void OnEnable()
     {
@@ -37,7 +36,7 @@ public class InputController: MonoBehaviour
 
     private void OnJoystickPointerDown()
     {
-        TimeManager.DoSlowmotion(_slowdownFactor);
+        _timeManager.DoSlowmotion();
         _tragectoryLine.Activate();
     }
 
@@ -51,7 +50,7 @@ public class InputController: MonoBehaviour
     private void OnJoystickPointerUp()
     {
         _controllable.Move(_direction);
-        TimeManager.UndoSlowmotion();
+        _timeManager.UndoSlowmotion();
         _tragectoryLine.Deactivate();
     }
 }

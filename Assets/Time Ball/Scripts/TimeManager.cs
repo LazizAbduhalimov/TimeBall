@@ -1,23 +1,60 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
-public static class TimeManager
+public class TimeManager : MonoBehaviour
 {
-    public static Action OnTimeSlowedEvent;
-    public static Action OnTimeUnslowedEvent;
+    public Action OnTimeSlowedEvent;
+    public Action OnTimeUnslowedEvent;
 
-    public static void DoSlowmotion(float _slowdownFactor)
+    [SerializeField] private float _slowdownFactor = 0.05f;
+    [SerializeField] private float _smoothing = 0.1f;
+    [SerializeField] private const float _smoothingFactor = 10f;
+
+    private Coroutine _coroutine;
+    private float _passedTime;
+
+    public void DoSlowmotion()
     {
-        Time.timeScale = _slowdownFactor;
-        Time.fixedDeltaTime = Time.timeScale * Time.fixedUnscaledDeltaTime;
+        if (_coroutine != null)
+            StopCoroutine( _coroutine );
+
+        _coroutine = StartCoroutine(SlowmotionRoutine());
         OnTimeSlowedEvent?.Invoke();
     }
 
-    public static void UndoSlowmotion()
+    public void UndoSlowmotion()
     {
-        Time.timeScale = 1f;
-        Time.fixedDeltaTime = 0.02f;
+        if (_coroutine != null)
+            StopCoroutine(_coroutine);
+
+        _coroutine = StartCoroutine(UnslowmotionRoutine());
         OnTimeUnslowedEvent?.Invoke();
+    }
+
+    private IEnumerator SlowmotionRoutine()
+    {
+        var waitingTime = _smoothing / _smoothingFactor;
+        var percentage = (1 - _slowdownFactor) / _smoothingFactor;
+        var waitingRealTime = new WaitForSecondsRealtime(waitingTime);
+        while (Time.timeScale >= _slowdownFactor)
+        {
+            Time.timeScale -= percentage;
+            yield return waitingRealTime;
+        }
+    }
+
+    private IEnumerator UnslowmotionRoutine()
+    {
+        var waitingTime = _smoothing / _smoothingFactor;
+        var percentage = (1 - _slowdownFactor) / _smoothingFactor;
+        var waitingRealTime = new WaitForSecondsRealtime(waitingTime);
+        
+        while (Time.timeScale < 1)
+        {
+            Time.timeScale += percentage;
+            yield return waitingRealTime;
+        }
     }
 }
 

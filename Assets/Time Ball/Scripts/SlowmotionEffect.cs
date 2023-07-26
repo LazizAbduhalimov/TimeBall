@@ -10,9 +10,13 @@ public class SlowmotionEffect : MonoBehaviour
 
     private ChromaticAberration _chromaticAberration;
     private Coroutine _slowmotionCoroutine;
-
+    private TimeManager _timeManager;
     private float _passedTime;
 
+    private void Awake()
+    {
+        _timeManager = FindObjectOfType<InputController>()._timeManager;
+    }
     private void Start()
     {
         _volume.profile.TryGet(out _chromaticAberration);   
@@ -20,14 +24,14 @@ public class SlowmotionEffect : MonoBehaviour
 
     private void OnEnable()
     {
-        TimeManager.OnTimeSlowedEvent += DoSlowmotionEffect;
-        TimeManager.OnTimeUnslowedEvent += UndoSlowmotionEffect;
+        _timeManager.OnTimeSlowedEvent += DoSlowmotionEffect;
+        _timeManager.OnTimeUnslowedEvent += UndoSlowmotionEffect;
     }
 
     private void OnDisable()
     {
-        TimeManager.OnTimeSlowedEvent -= DoSlowmotionEffect;
-        TimeManager.OnTimeUnslowedEvent -= UndoSlowmotionEffect;
+        _timeManager.OnTimeSlowedEvent -= DoSlowmotionEffect;
+        _timeManager.OnTimeUnslowedEvent -= UndoSlowmotionEffect;
     }
 
     private void DoSlowmotionEffect()
