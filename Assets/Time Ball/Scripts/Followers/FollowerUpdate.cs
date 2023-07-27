@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-public class FollowerUpdate : Follower
+public class FollowerLateUpdate : Follower
 {
-    void Update()
+    private void LateUpdate()
     {
         Move(Time.deltaTime);
     }
