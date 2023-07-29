@@ -7,11 +7,6 @@ public class LazerEnemy : EnemyBase
     [SerializeField] private float _rayDistance;
     [SerializeField] private LineRenderer _lazer;
 
-    private void Start()
-    {
-
-    }
-
     private void Update()
     {
         Attack();

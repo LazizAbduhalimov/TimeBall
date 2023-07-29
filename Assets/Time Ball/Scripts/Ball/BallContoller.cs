@@ -1,13 +1,15 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 public class BallContoller : MonoBehaviour, IControllable
 {
+    public Action OnBallDeathEvent;
     [SerializeField] private float _speed;
     
     private Rigidbody _rigidbody;
 
-    private void Start()
+    public void Initialize()
     {
         _rigidbody = GetComponent<Rigidbody>();
     }
@@ -19,7 +21,10 @@ public class BallContoller : MonoBehaviour, IControllable
 
     public void Die()
     {
-        gameObject.SetActive(false);
+        _rigidbody.velocity = Vector3.zero;
+        OnBallDeathEvent?.Invoke();
+        Time.timeScale = 1f;
+        transform.parent.gameObject.SetActive(false);
     }
 
     private void Throw(Vector3 direction)

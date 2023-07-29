@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class Turret : EnemyBase
@@ -8,15 +7,21 @@ public class Turret : EnemyBase
     [SerializeField] private Transform _bulletCreateTransform;
 
     [SerializeField] private Transform _rotationTarget;
+    [SerializeField] private float _rotationSpeed;
 
-    private void Start()
+    private BarController _barController;
+
+    public void Start()
     {
-        StartCoroutine(PeriodicAttackRoutine());
+        _barController = GetComponentInChildren<BarController>();
     }
 
     private void Update()
     {
         LookAtTarget(_rotationTarget);
+        TryAttack();
+
+        _barController.FillAmount = PassedAttackTime / AttackRate;
     }
 
     public override void Attack()
@@ -24,13 +29,12 @@ public class Turret : EnemyBase
         CreateBullet();
     }
 
-    private IEnumerator PeriodicAttackRoutine()
+    private void TryAttack()
     {
-        var waitingTime = new WaitForSeconds(AttackRate);
-
-        while (true)
+        PassedAttackTime += Time.deltaTime;
+        if (PassedAttackTime > AttackRate)
         {
-            yield return waitingTime;
+            PassedAttackTime -= AttackRate;
             Attack();
         }
     }
@@ -42,6 +46,7 @@ public class Turret : EnemyBase
 
     private void LookAtTarget(Transform target)
     {
-        transform.LookAt(target);
+        var direction = Quaternion.LookRotation(target.position - transform.position);
+        transform.rotation = Quaternion.Slerp(transform.rotation, direction, _rotationSpeed * Time.deltaTime);
     }
 }

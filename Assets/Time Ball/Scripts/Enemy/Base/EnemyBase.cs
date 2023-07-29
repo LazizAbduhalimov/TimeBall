@@ -3,11 +3,13 @@ using UnityEngine;
 
 public abstract class EnemyBase : MonoBehaviour, IEnemy
 {
-    public Action OnEnemyDieEvent;
+    public Action<EnemyBase> OnEnemyDieEvent;
 
     [SerializeField] protected int Health = 3;
     [SerializeField] protected float AttackRate;
     [SerializeField] private ParticleSystem _deathEffect;
+
+    protected float PassedAttackTime;
 
     public virtual void ApplyDamage(int damage)
     {
@@ -25,7 +27,7 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
     public virtual void Die()
     {
         Instantiate(_deathEffect, transform.position, Quaternion.identity);
-        OnEnemyDieEvent?.Invoke();
-        Destroy(gameObject);
+        OnEnemyDieEvent?.Invoke(this);
+        gameObject.SetActive(false);
     }
 }

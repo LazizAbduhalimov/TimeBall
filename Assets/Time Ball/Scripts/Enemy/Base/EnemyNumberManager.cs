@@ -1,26 +1,49 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class EnemyNumberManager : MonoBehaviour
 {
-    private int _enemiesLeft;
+    public Action OnNoEnemyLeftEvent;
 
-    private void Start()
+    private int _enemiesLeft;
+    private EnemyBase[] _enemies;
+
+    public void Initialize()
     {
-        var enemies = FindObjectsOfType<EnemyBase>();
-        _enemiesLeft = enemies.Length;
-        foreach (var enemy in enemies)
+        _enemies = FindObjectsOfType<EnemyBase>(true);
+        ResetEnemies();
+    }
+
+    public void ResetEnemies()
+    {       
+        foreach (var enemy in _enemies)
+            enemy.gameObject.SetActive(true);
+
+        _enemiesLeft = _enemies.Length;
+        UnsubscribeOnDeathEvent();
+        SubscribeOnDeathEvent();
+    }
+
+    private void OnEnemyDie(EnemyBase enemy)
+    {
+        _enemiesLeft--;
+        if (_enemiesLeft < 1)
+            OnNoEnemyLeftEvent?.Invoke();
+    }
+
+    private void SubscribeOnDeathEvent()
+    {
+        foreach (var enemy in _enemies)
         {
             enemy.OnEnemyDieEvent += OnEnemyDie;
         }
     }
 
-    private void OnEnemyDie()
+    private void UnsubscribeOnDeathEvent()
     {
-        _enemiesLeft--;
-
-        if (_enemiesLeft < 1)
+        foreach (var enemy in _enemies)
         {
-            Debug.Log("You win!");
+            enemy.OnEnemyDieEvent -= OnEnemyDie;
         }
     }
 }

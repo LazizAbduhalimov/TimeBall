@@ -70,7 +70,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collisionEffect: {fileID: 198602994958770764, guid: ec1383a81f8b26e41bd5795fba065567,
     type: 3}
-  _forcePower: 10
+  _speed: 12
 --- !u!54 &6170067819716187261
 Rigidbody:
   m_ObjectHideFlags: 0

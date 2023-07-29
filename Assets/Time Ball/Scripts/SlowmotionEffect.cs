@@ -8,30 +8,50 @@ public class SlowmotionEffect : MonoBehaviour
     [SerializeField] private Volume _volume;
     [SerializeField] private float _transitionTime = 1f;
 
+    [Range(0f, 1f)]
+    [SerializeField] private float _maxIntensity;
+
     private ChromaticAberration _chromaticAberration;
     private Coroutine _slowmotionCoroutine;
     private TimeManager _timeManager;
     private float _passedTime;
 
-    private void Awake()
+    private bool _isInitialized = false;
+
+    private void OnEnable()
     {
-        _timeManager = FindObjectOfType<InputController>()._timeManager;
+        if (_isInitialized)
+            Subscribe();
     }
+
     private void Start()
     {
         _volume.profile.TryGet(out _chromaticAberration);   
     }
 
-    private void OnEnable()
+    private void OnDisable()
+    {
+        if (_isInitialized)
+            Unsubscribe();
+    }
+
+    public void Initialize(TimeManager timeManager)
+    {
+        _timeManager = timeManager;
+        Subscribe();
+        _isInitialized = true;
+    }
+
+    private void Subscribe()
     {
         _timeManager.OnTimeSlowedEvent += DoSlowmotionEffect;
         _timeManager.OnTimeUnslowedEvent += UndoSlowmotionEffect;
     }
 
-    private void OnDisable()
+    private void Unsubscribe()
     {
-        _timeManager.OnTimeSlowedEvent -= DoSlowmotionEffect;
-        _timeManager.OnTimeUnslowedEvent -= UndoSlowmotionEffect;
+        _timeManager.OnTimeSlowedEvent += DoSlowmotionEffect;
+        _timeManager.OnTimeUnslowedEvent += UndoSlowmotionEffect;
     }
 
     private void DoSlowmotionEffect()
@@ -54,7 +74,7 @@ public class SlowmotionEffect : MonoBehaviour
         while (_passedTime < duration)
         {
             _passedTime += partWaitingTime.waitTime;
-            _chromaticAberration.intensity.value = _passedTime / duration;
+            _chromaticAberration.intensity.value = (_passedTime / duration) * _maxIntensity;
             yield return partWaitingTime;
         }
     }
@@ -65,7 +85,7 @@ public class SlowmotionEffect : MonoBehaviour
         while (_passedTime > 0)
         {
             _passedTime -= partWaitingTime.waitTime;
-            _chromaticAberration.intensity.value = _passedTime / duration;
+            _chromaticAberration.intensity.value = (_passedTime / duration) * _maxIntensity;
             yield return partWaitingTime;
         }
     }

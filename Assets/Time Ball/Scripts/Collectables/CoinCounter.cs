@@ -6,7 +6,7 @@ public class CoinCounter : MonoBehaviour
 {
     private TextMeshProUGUI _text;
 
-    private void Start()
+    public void Awake()
     {
         _text = GetComponent<TextMeshProUGUI>();
     }

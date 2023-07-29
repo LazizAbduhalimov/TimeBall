@@ -1,9 +1,9 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
+[RequireComponent(typeof(IControllable))]
 public class InputController: MonoBehaviour
 {
-    public TimeManager _timeManager;
+    public TimeManager TimeManager;
 
     [SerializeField] private Joystick _joystick;
 
@@ -25,18 +25,16 @@ public class InputController: MonoBehaviour
         _joystick.OnPoinerUpEvent -= OnJoystickPointerUp;
     }
 
-    private void Awake()
+    public void Initialize(TimeManager timeManager)
     {
+        TimeManager = timeManager;
         _controllable = GetComponent<IControllable>();
         _tragectoryLine = GetComponent<TragectoryLineRenderer>();
-        
-        if (_controllable == null)
-            throw new NullReferenceException($"There is no IContollable in {gameObject.name}");
     }
 
     private void OnJoystickPointerDown()
     {
-        _timeManager.DoSlowmotion();
+        TimeManager.DoSlowmotion();
         _tragectoryLine.Activate();
     }
 
@@ -50,7 +48,7 @@ public class InputController: MonoBehaviour
     private void OnJoystickPointerUp()
     {
         _controllable.Move(_direction);
-        _timeManager.UndoSlowmotion();
+        TimeManager.UndoSlowmotion();
         _tragectoryLine.Deactivate();
     }
 }

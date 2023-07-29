@@ -12,7 +12,6 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private const float _smoothingFactor = 10f;
 
     private Coroutine _coroutine;
-    private float _passedTime;
 
     public void DoSlowmotion()
     {

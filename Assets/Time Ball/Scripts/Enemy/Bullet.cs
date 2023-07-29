@@ -3,7 +3,7 @@
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _collisionEffect;
-    [SerializeField] private float _forcePower;
+    [SerializeField] private float _speed;
 
     private Rigidbody _rigidbody;
 
@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
 
         var direction = new Vector3(sin, 0, cos);
 
-        _rigidbody.velocity = direction * _forcePower;
+        _rigidbody.velocity = direction * _speed;
     }
 
     private void OnCollisionEnter(Collision collision)
