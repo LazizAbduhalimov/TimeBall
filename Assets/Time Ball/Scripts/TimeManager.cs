@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour
 {
+    public Action OnTimeStoppedEvent;
     public Action OnTimeSlowedEvent;
     public Action OnTimeUnslowedEvent;
 
@@ -12,6 +13,12 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private const float _smoothingFactor = 10f;
 
     private Coroutine _coroutine;
+
+    public void StopTime()
+    {
+        Time.timeScale = 0f;
+        OnTimeStoppedEvent?.Invoke();
+    }
 
     public void DoSlowmotion()
     {
@@ -36,6 +43,7 @@ public class TimeManager : MonoBehaviour
         var waitingTime = _smoothing / _smoothingFactor;
         var percentage = (1 - _slowdownFactor) / _smoothingFactor;
         var waitingRealTime = new WaitForSecondsRealtime(waitingTime);
+
         while (Time.timeScale >= _slowdownFactor)
         {
             Time.timeScale -= percentage;

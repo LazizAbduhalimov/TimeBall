@@ -16,8 +16,8 @@ public class EntryPoint : MonoBehaviour
         _fpsLimiter.Initialize();
         _ballConroller.Initialize();
         _enemyNumberManager.Initialize();
-        _win.Initialize(_enemyNumberManager);
         _inputController.Initialize(_timeManager);
+        _win.Initialize(_enemyNumberManager, _timeManager);
         _restarter.Initialize(_ballConroller, _enemyNumberManager);
         _slowMotionEffect.Initialize(_inputController.TimeManager);
     }

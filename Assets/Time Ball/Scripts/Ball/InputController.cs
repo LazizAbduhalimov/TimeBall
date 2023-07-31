@@ -3,7 +3,8 @@
 [RequireComponent(typeof(IControllable))]
 public class InputController: MonoBehaviour
 {
-    public TimeManager TimeManager;
+    public TimeManager TimeManager => _timeManager;
+    private TimeManager _timeManager;
 
     [SerializeField] private Joystick _joystick;
 
@@ -23,18 +24,19 @@ public class InputController: MonoBehaviour
         _joystick.OnPoinerDownEvent -= OnJoystickPointerDown;
         _joystick.OnPoinerDragEvent -= OnJoystickPointerDrag;
         _joystick.OnPoinerUpEvent -= OnJoystickPointerUp;
+        _timeManager.UndoSlowmotion();
     }
 
     public void Initialize(TimeManager timeManager)
     {
-        TimeManager = timeManager;
+        _timeManager = timeManager;
         _controllable = GetComponent<IControllable>();
         _tragectoryLine = GetComponent<TragectoryLineRenderer>();
     }
 
     private void OnJoystickPointerDown()
     {
-        TimeManager.DoSlowmotion();
+        _timeManager.DoSlowmotion();
         _tragectoryLine.Activate();
     }
 
@@ -48,7 +50,7 @@ public class InputController: MonoBehaviour
     private void OnJoystickPointerUp()
     {
         _controllable.Move(_direction);
-        TimeManager.UndoSlowmotion();
+        _timeManager.UndoSlowmotion();
         _tragectoryLine.Deactivate();
     }
 }
