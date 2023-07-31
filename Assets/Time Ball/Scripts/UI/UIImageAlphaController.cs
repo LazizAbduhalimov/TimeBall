@@ -1,31 +1,30 @@
 using UnityEngine;
-using UnityEngine.UI;
 using DG.Tweening;
 
-[RequireComponent(typeof(Image))]
-public class UIImageAlphaController : MonoBehaviour
+[RequireComponent(typeof(CanvasGroup))]
+public class UIAlphaController : MonoBehaviour
 {
     [Range(0f, 1f)]
     [SerializeField] private float _endValue;
     [SerializeField] private float _duration;
     [SerializeField] private bool _isAlhaZeroWhenInactive;
 
-    private Image _image;
+    private CanvasGroup _canvasGroup;
 
     private void Awake()
     {
-        _image.DOFade(0, 0);
-        _image = GetComponent<Image>();
+        _canvasGroup.DOFade(0, 0);
+        _canvasGroup = GetComponent<CanvasGroup>();
     }
 
     private void OnEnable()
     {
-        _image.DOFade(_endValue, _duration);
+        _canvasGroup.DOFade(_endValue, _duration).SetUpdate(true);
     }
 
     private void OnDisable()
     {
         if (_isAlhaZeroWhenInactive)
-            _image.DOFade(0, 0);
+            _canvasGroup.DOFade(0, 0);
     }
 }
