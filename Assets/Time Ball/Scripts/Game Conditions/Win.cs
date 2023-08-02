@@ -5,6 +5,7 @@ using UnityEngine;
 public class Win : MonoBehaviour
 {
     [SerializeField] private float _timeUntilSlowmotion = 0.1f;
+    [SerializeField] private float _timeToShowUI = 0.3f;
     [SerializeField] private Joystick _joystickToInenable;
     [SerializeField] private GameObject _UIObjectToShow;
 
@@ -43,8 +44,8 @@ public class Win : MonoBehaviour
         Debug.Log("Win UI is showing");
         _joystickToInenable.enabled = false;
         RemoveInputControllers();
-        StartCoroutine(DoActionAfterSeconds(_timeManager.DoSlowmotion, _timeUntilSlowmotion));
-        StartCoroutine(DoActionAfterSeconds(ShowUI, _timeUntilSlowmotion));
+        DoActionAfterSeconds(_timeManager.DoSlowmotion, _timeUntilSlowmotion);
+        DoActionAfterSeconds(ShowUI, _timeToShowUI);
     }
 
     private void ShowUI()
@@ -52,9 +53,14 @@ public class Win : MonoBehaviour
         _UIObjectToShow.gameObject.SetActive(true);
     }
 
-    private IEnumerator DoActionAfterSeconds(Action action, float seconds)
+    private void DoActionAfterSeconds(Action action, float time)
     {
-        yield return new WaitForSecondsRealtime(seconds);
+        StartCoroutine(DoActionAfterSecondsRoutine(action, time));
+    }
+
+    private IEnumerator DoActionAfterSecondsRoutine(Action action, float time)
+    {
+        yield return new WaitForSecondsRealtime(time);
         action();
     }
 
