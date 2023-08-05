@@ -41,9 +41,9 @@ public class TimeManager : MonoBehaviour
     private IEnumerator SlowmotionRoutine()
     {
         var waitingTime = _smoothing / _smoothingFactor;
-        var percentage = (1 - _slowdownFactor) / _smoothingFactor;
+        var percentage = (1f - _slowdownFactor) / _smoothingFactor;
         var waitingRealTime = new WaitForSecondsRealtime(waitingTime);
-
+        Debug.Log(percentage);
         while (Time.timeScale >= _slowdownFactor)
         {
             Time.timeScale -= percentage;
