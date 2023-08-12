@@ -34,16 +34,12 @@ public class EnemyNumberManager : MonoBehaviour
     private void SubscribeOnDeathEvent()
     {
         foreach (var enemy in _enemies)
-        {
             enemy.OnEnemyDieEvent += OnEnemyDie;
-        }
     }
 
     private void UnsubscribeOnDeathEvent()
     {
         foreach (var enemy in _enemies)
-        {
             enemy.OnEnemyDieEvent -= OnEnemyDie;
-        }
     }
 }

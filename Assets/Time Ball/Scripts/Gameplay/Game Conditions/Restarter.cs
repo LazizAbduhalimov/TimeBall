@@ -22,7 +22,6 @@ public class Restarter : MonoBehaviour
             Subscribe();
     }
         
-
     private void OnDisable()
     {
         if (_isInitialized)

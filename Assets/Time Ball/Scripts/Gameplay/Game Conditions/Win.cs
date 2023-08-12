@@ -1,13 +1,11 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
 public class Win : MonoBehaviour
 {
-    [SerializeField] private float _timeUntilSlowmotion = 0.1f;
-    [SerializeField] private float _timeToShowUI = 0.3f;
+    public Action OnVictoryEvent;
+
     [SerializeField] private Joystick _joystickToInenable;
-    [SerializeField] private GameObject _UIObjectToShow;
 
     private EnemyNumberManager _enemyNumberManager;
     private TimeManager _timeManager;
@@ -15,13 +13,13 @@ public class Win : MonoBehaviour
 
     private void OnEnable()
     {
-        if(_isInitialized )
+        if (_isInitialized)
             Subscribe();
     }
 
     private void OnDisable()
     {
-        if(_isInitialized)
+        if (_isInitialized)
             Unsubscribe();
     }
 
@@ -41,31 +39,15 @@ public class Win : MonoBehaviour
 
     private void OnNoEnemyLeft()
     {
-        Debug.Log("Win UI is showing");
-        _joystickToInenable.enabled = false;
+        OnVictoryEvent?.Invoke();
         RemoveInputControllers();
-        DoActionAfterSeconds(_timeManager.DoSlowmotion, _timeUntilSlowmotion);
-        DoActionAfterSeconds(ShowUI, _timeToShowUI);
-    }
-
-    private void ShowUI()
-    {
-        _UIObjectToShow.gameObject.SetActive(true);
-    }
-
-    private void DoActionAfterSeconds(Action action, float time)
-    {
-        StartCoroutine(DoActionAfterSecondsRoutine(action, time));
-    }
-
-    private IEnumerator DoActionAfterSecondsRoutine(Action action, float time)
-    {
-        yield return new WaitForSecondsRealtime(time);
-        action();
+        _timeManager.DoSlowmotion();
     }
 
     private void RemoveInputControllers()
     {
+        _joystickToInenable.enabled = false;
+
         var inputControllers = FindObjectsOfType<InputController>();
         foreach (var controller in inputControllers)
             controller.enabled = false;

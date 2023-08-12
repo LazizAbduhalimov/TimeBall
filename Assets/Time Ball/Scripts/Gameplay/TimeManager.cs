@@ -43,9 +43,14 @@ public class TimeManager : MonoBehaviour
         var waitingTime = _smoothing / _smoothingFactor;
         var percentage = (1f - _slowdownFactor) / _smoothingFactor;
         var waitingRealTime = new WaitForSecondsRealtime(waitingTime);
-        Debug.Log(percentage);
-        while (Time.timeScale >= _slowdownFactor)
+
+        while (Time.timeScale > _slowdownFactor)
         {
+            if (Time.timeScale - percentage <= _slowdownFactor)
+            {
+                Time.timeScale = _slowdownFactor;
+                break;
+            }
             Time.timeScale -= percentage;
             yield return waitingRealTime;
         }
