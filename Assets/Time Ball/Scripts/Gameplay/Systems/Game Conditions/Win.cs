@@ -31,17 +31,20 @@ public class Win : MonoBehaviour
         _isInitialized = true;
     }
 
-    private void Subscribe() =>
-        _enemyNumberManager.OnNoEnemyLeftEvent += OnNoEnemyLeft;
-
-    private void Unsubscribe() =>
-        _enemyNumberManager.OnNoEnemyLeftEvent -= OnNoEnemyLeft;
-
     private void OnNoEnemyLeft()
     {
         OnVictoryEvent?.Invoke();
         RemoveInputControllers();
         _timeManager.DoSlowmotion();
+        SaveLevelAsPassed();
+        
+    }
+
+    private void SaveLevelAsPassed()
+    {
+        var levelSaver = new UnlockedLevelSaver();
+        var level = GetComponentInParent<Level>();
+        levelSaver.SaveLevelAsUnlocked(level);
     }
 
     private void RemoveInputControllers()
@@ -52,4 +55,10 @@ public class Win : MonoBehaviour
         foreach (var controller in inputControllers)
             controller.enabled = false;
     }
+
+    private void Subscribe() =>
+        _enemyNumberManager.OnNoEnemyLeftEvent += OnNoEnemyLeft;
+
+    private void Unsubscribe() =>
+        _enemyNumberManager.OnNoEnemyLeftEvent -= OnNoEnemyLeft;
 }

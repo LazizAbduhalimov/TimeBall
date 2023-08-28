@@ -1,7 +1,7 @@
 using LavkaRazrabotchika;
 using UnityEngine;
 
-public class BallEffect : MonoBehaviour
+public class PoolHolder : MonoBehaviour
 {
     [SerializeField] private int _poolCount = 5;
     [SerializeField] private bool _autoExpand;
@@ -10,11 +10,9 @@ public class BallEffect : MonoBehaviour
 
     private PoolMono<PoolObject> _pool;
 
-
     private void Start()
     {
         _pool = new PoolMono<PoolObject>(_effect, _poolCount, _container);
-
         _pool.autoExpand = _autoExpand;
     }
 
@@ -27,8 +25,6 @@ public class BallEffect : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag != "Ground")
-        {
             CreateEffect(transform.position);
-        }
     }
 }

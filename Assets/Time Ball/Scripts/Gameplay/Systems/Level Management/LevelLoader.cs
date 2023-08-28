@@ -9,10 +9,14 @@ public class LevelLoader : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private float _waitingTime;
 
+    private UnlockedLevelSaver _unlockedLevelSaver;
+
     private void Awake()
     {
         if (_levelsToLoad.Length < 1)
             throw new NullReferenceException($"No levels to load on {name}");
+
+        _unlockedLevelSaver = new UnlockedLevelSaver();
     }
 
     public void LoadLevel()
@@ -30,7 +34,7 @@ public class LevelLoader : MonoBehaviour
 
     private Level GetLastUnlockLevel()
     {
-        var levelIndex = PlayerPrefs.GetInt("LastLevel", 0);
+        var levelIndex = _unlockedLevelSaver.GetLastUnlockLevelIndex();
         return _levelsToLoad[levelIndex];
     }
 }
