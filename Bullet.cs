@@ -8,20 +8,16 @@ public class Bullet : PoolObject
 
     private Rigidbody _rigidbody;
 
-    private void Awake()
+    void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
-    }
 
-    private void OnEnable()
-    {
         var cos = Mathf.Cos(transform.rotation.eulerAngles.y * Mathf.Deg2Rad);
         var sin = Mathf.Sin(transform.rotation.eulerAngles.y * Mathf.Deg2Rad);
 
         var direction = new Vector3(sin, 0, cos);
 
         _rigidbody.velocity = direction * _speed;
-        Debug.Log(_rigidbody.velocity);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -31,6 +27,6 @@ public class Bullet : PoolObject
 
         Instantiate(_collisionEffect, transform.position, Quaternion.identity);
 
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }   
 }

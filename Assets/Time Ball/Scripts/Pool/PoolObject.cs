@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace LavkaRazrabotchika
 {
-    internal class PoolObject : MonoBehaviour
+    public class PoolObject : MonoBehaviour
     {
         [SerializeField] private float _lifeTime = 2f;
 
@@ -22,7 +22,6 @@ namespace LavkaRazrabotchika
         private IEnumerator LifeCoroutine()
         {
             yield return new WaitForSecondsRealtime(_lifeTime);
-
             Deactivate();
         }
 

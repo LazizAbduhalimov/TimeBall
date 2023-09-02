@@ -1,18 +1,27 @@
+using LavkaRazrabotchika;
 using UnityEngine;
 
 public class Turret : EnemyBase
 {
     [Header("Unique properties")]
-    [SerializeField] private Bullet _bullet;
     [SerializeField] private Transform _bulletCreateTransform;
-
     [SerializeField] private Transform _rotationTarget;
     [SerializeField] private float _rotationSpeed;
 
+    [Header("Pool settings")]
+    [SerializeField] private Bullet _bullet;
+    [SerializeField] private int _poolCount;
+    [SerializeField] private bool _autoExpand;
+    [SerializeField] private Transform _container;
+
     private BarController _barController;
+    private PoolMono<PoolObject> _pool;
 
     public void Start()
     {
+        _pool = new PoolMono<PoolObject>(_bullet, _poolCount, _container);
+        _pool.autoExpand = _autoExpand;
+
         _barController = GetComponentInChildren<BarController>();
     }
 
@@ -26,22 +35,24 @@ public class Turret : EnemyBase
 
     public override void Attack()
     {
-        CreateBullet();
+        CreateBullet(_bulletCreateTransform.position);
     }
 
-    private void TryAttack()
+    private bool TryAttack()
     {
         PassedAttackTime += Time.deltaTime;
-        if (PassedAttackTime > AttackRate)
-        {
-            PassedAttackTime -= AttackRate;
-            Attack();
-        }
+        if (PassedAttackTime < AttackRate)
+            return false;
+
+        PassedAttackTime -= AttackRate;
+        Attack();
+        return true;
     }
 
-    private void CreateBullet()
+    private void CreateBullet(Vector3 position)
     {
-        var createdBullet = Instantiate(_bullet, _bulletCreateTransform.position, transform.rotation);
+        var createdBullet = _pool.GetFreeElement();
+        createdBullet.transform.position = position;
     }
 
     private void LookAtTarget(Transform target)

@@ -1,7 +1,7 @@
 using LavkaRazrabotchika;
 using UnityEngine;
 
-public class PoolHolder : MonoBehaviour
+public class CollisionEffectCreator : MonoBehaviour
 {
     [SerializeField] private int _poolCount = 5;
     [SerializeField] private bool _autoExpand;
