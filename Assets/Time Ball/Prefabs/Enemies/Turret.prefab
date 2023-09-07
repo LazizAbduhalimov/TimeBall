@@ -32,7 +32,6 @@ Transform:
   m_Children:
   - {fileID: 263354894149869294}
   - {fileID: 1222948692001852434}
-  - {fileID: 7268726424682110669}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -76,41 +75,7 @@ MonoBehaviour:
   _bulletCreateTransform: {fileID: 574044681117946118}
   _rotationTarget: {fileID: 0}
   _rotationSpeed: 5
-  _bullet: {fileID: 4544869761404024505, guid: df6c7feaa1c138549a5f3c9dc5fc8ca5, type: 3}
-  _poolCount: 3
-  _autoExpand: 1
-  _container: {fileID: 7268726424682110669}
---- !u!1 &775488904942597886
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7268726424682110669}
-  m_Layer: 6
-  m_Name: Bullets container
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7268726424682110669
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 775488904942597886}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3654854403340676101}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  _bulletsPool: {fileID: 0}
 --- !u!1 &3144381824858427644
 GameObject:
   m_ObjectHideFlags: 0

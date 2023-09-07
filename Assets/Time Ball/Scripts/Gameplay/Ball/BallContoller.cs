@@ -24,7 +24,7 @@ public class BallContoller : MonoBehaviour, IControllable
         _rigidbody.velocity = Vector3.zero;
         OnBallDeathEvent?.Invoke();
         Time.timeScale = 1f;
-        transform.parent.gameObject.SetActive(false);
+        transform.gameObject.SetActive(false);
     }
 
     private void Throw(Vector3 direction)

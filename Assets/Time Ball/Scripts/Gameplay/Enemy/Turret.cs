@@ -1,4 +1,3 @@
-using LavkaRazrabotchika;
 using UnityEngine;
 
 public class Turret : EnemyBase
@@ -9,19 +8,13 @@ public class Turret : EnemyBase
     [SerializeField] private float _rotationSpeed;
 
     [Header("Pool settings")]
-    [SerializeField] private Bullet _bullet;
-    [SerializeField] private int _poolCount;
-    [SerializeField] private bool _autoExpand;
-    [SerializeField] private Transform _container;
+    [SerializeField] private CollisionEffectPool _bulletsPool;
+    [SerializeField] private CollisionEffectPool _deathEffectPool;
 
     private BarController _barController;
-    private PoolMono<PoolObject> _pool;
 
     public void Start()
     {
-        _pool = new PoolMono<PoolObject>(_bullet, _poolCount, _container);
-        _pool.autoExpand = _autoExpand;
-
         _barController = GetComponentInChildren<BarController>();
     }
 
@@ -29,13 +22,8 @@ public class Turret : EnemyBase
     {
         LookAtTarget(_rotationTarget);
         TryAttack();
-
+        
         _barController.FillAmount = PassedAttackTime / AttackRate;
-    }
-
-    public override void Attack()
-    {
-        CreateBullet(_bulletCreateTransform.position);
     }
 
     private bool TryAttack()
@@ -49,15 +37,29 @@ public class Turret : EnemyBase
         return true;
     }
 
-    private void CreateBullet(Vector3 position)
+    public override void Attack()
     {
-        var createdBullet = _pool.GetFreeElement();
+        CreateBullet(_bulletCreateTransform.position, transform.rotation);
+    }
+
+    private void CreateBullet(Vector3 position, Quaternion rotation)
+    {
+        var createdBullet = _bulletsPool.Pool.GetFreeElement(false);
         createdBullet.transform.position = position;
+        createdBullet.transform.rotation = rotation;
+        createdBullet.gameObject.SetActive(true);
     }
 
     private void LookAtTarget(Transform target)
     {
         var direction = Quaternion.LookRotation(target.position - transform.position);
         transform.rotation = Quaternion.Slerp(transform.rotation, direction, _rotationSpeed * Time.deltaTime);
+    }
+
+    public override void Die()
+    {
+        _deathEffectPool.CreateObject(transform.position);
+        OnEnemyDieEvent?.Invoke(this);
+        gameObject.SetActive(false);
     }
 }

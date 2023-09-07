@@ -14896,6 +14896,7 @@ GameObject:
   - component: {fileID: 6634107688254340808}
   - component: {fileID: 557068545009538747}
   - component: {fileID: 7030262702338184179}
+  - component: {fileID: -6658271386808981243}
   m_Layer: 0
   m_Name: Coin collection effect
   m_TagString: Untagged
@@ -19821,7 +19822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9205bc1bbacc90040a998067b5643d16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clearBehavior: 2
+  clearBehavior: 1
   cameraShake:
     enabled: 0
     useMainCamera: 1
@@ -19981,3 +19982,16 @@ MonoBehaviour:
     perlinColor: 0
     perlinColorSpeed: 1
   fadeOutReference: {fileID: 0}
+--- !u!114 &-6658271386808981243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7835338723019018219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 961d0f60406ee2449b6b33e84a708439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lifeTime: 0

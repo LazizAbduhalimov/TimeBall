@@ -43,7 +43,7 @@ public class Restarter : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(2f);
         _ball.transform.position = _ball.transform.parent.position;
-        _ball.transform.parent.gameObject.SetActive(true);
+        _ball.transform.gameObject.SetActive(true);
         _enemyNumberManager.ResetEnemies();
     }
 }

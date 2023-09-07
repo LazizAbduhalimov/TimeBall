@@ -4,6 +4,7 @@ public class Coin : MonoBehaviour, ICollectable
 {
     [SerializeField] private ParticleSystem _collectionEffect;
     [SerializeField] private int amount = 1;
+    [SerializeField] private CollisionEffectPool _collisionPool;
 
     public void Collect()
     {
@@ -13,6 +14,6 @@ public class Coin : MonoBehaviour, ICollectable
 
     private void CreateEffect()
     {
-        Instantiate(_collectionEffect, transform.position, Quaternion.identity);
+        _collisionPool.CreateObject(transform.position);
     }
 }

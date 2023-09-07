@@ -13,19 +13,10 @@ namespace LavkaRazrabotchika
 
         private List<T> _pool;
 
-        public PoolMono(T prefab, int count)
-        {
-            Prefab = prefab;
-            Container = null;
-
-            CreatePool(count);
-        }
-
-        public PoolMono(T prefab, int count, Transform container)
+        public PoolMono(T prefab, int count, Transform container = null)
         {
             Prefab = prefab;
             Container = container;
-
             CreatePool(count);
         }
 
@@ -47,14 +38,14 @@ namespace LavkaRazrabotchika
             return createdObjcet;
         }
 
-        public bool HasFreeElement(out T element)
+        public bool HasFreeElement(out T element, bool activeInHierarchy = true)
         {
             foreach (var mono in _pool)
             {
                 if (!mono.gameObject.activeInHierarchy)
                 {
                     element = mono;
-                    mono.gameObject.SetActive(true);
+                    mono.gameObject.SetActive(activeInHierarchy);
                     return true;
                 }
             }
@@ -62,9 +53,9 @@ namespace LavkaRazrabotchika
             return false;
         }
 
-        public T GetFreeElement()
+        public T GetFreeElement(bool activeInHierarchy = true)
         {
-            if (HasFreeElement(out var element))
+            if (HasFreeElement(out var element, activeInHierarchy))
                 return element;
 
             if (autoExpand)

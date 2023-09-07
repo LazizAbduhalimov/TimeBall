@@ -37,7 +37,7 @@ public class TimeManager : MonoBehaviour
         _coroutine = StartCoroutine(UnslowmotionRoutine());
         OnTimeUnslowedEvent?.Invoke();
     }
-
+  
     private IEnumerator SlowmotionRoutine()
     {
         var waitingTime = _smoothing / _smoothingFactor;

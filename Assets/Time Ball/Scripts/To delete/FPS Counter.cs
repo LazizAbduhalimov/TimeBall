@@ -20,7 +20,7 @@ public class FPSCounter : MonoBehaviour
         {
             var current = (int)(1f / Time.unscaledDeltaTime);
             _text.text = current.ToString();
-            yield return null;
+            yield return waitingTime;
         }
     }
 }

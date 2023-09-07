@@ -9,7 +9,7 @@ public class FPSLimiter : MonoBehaviour
         Application.targetFrameRate = _fpsLimit;
     }
 
-    public void Update()
+    public void Start()
     {
         Initialize();
     }

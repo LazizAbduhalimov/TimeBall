@@ -4,12 +4,12 @@
 public class InputController: MonoBehaviour
 {
     public TimeManager TimeManager => _timeManager;
-    private TimeManager _timeManager;
 
     [SerializeField] private Joystick _joystick;
 
     private TragectoryLineRenderer _tragectoryLine;
     private IControllable _controllable;
+    private TimeManager _timeManager;
     private Vector3 _direction;
 
     private void OnEnable()
