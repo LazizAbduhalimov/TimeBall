@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class UnlockedLevelSaver : MonoBehaviour
+public class UnlockedLevelSaver
 {
     public const string UNLOCKED_KEY = "LastLevel";
 
@@ -11,7 +11,7 @@ public class UnlockedLevelSaver : MonoBehaviour
 
     public int GetLastUnlockLevelIndex()
     {
-        var levelIndex = PlayerPrefs.GetInt("LastLevel", -1);
+        var levelIndex = PlayerPrefs.GetInt(UNLOCKED_KEY, -1);
         return ++levelIndex;
     }
 }

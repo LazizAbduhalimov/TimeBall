@@ -19,7 +19,7 @@ public class LevelLoader : MonoBehaviour
         _unlockedLevelSaver = new UnlockedLevelSaver();
     }
 
-    public void LoadLevel()
+    public void LoadNextLevel()
     {
         StartCoroutine(LoadLevelRoutine());
     }

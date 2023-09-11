@@ -1512,7 +1512,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh33306
+  m_Name: pb_Mesh29576
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -1677,7 +1677,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh33354
+  m_Name: pb_Mesh29622
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -6776,7 +6776,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1014904417}
-  - component: {fileID: 1014904416}
   - component: {fileID: 1014904418}
   m_Layer: 0
   m_Name: Entry Point
@@ -6785,18 +6784,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1014904416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1014904415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53960b34743e7184499849cd40106da4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1014904417
 Transform:
   m_ObjectHideFlags: 0
@@ -6857,7 +6844,7 @@ PrefabInstance:
     - target: {fileID: 2177109920387564516, guid: e457c2c697962634386b2bad9b704081,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadLevel
+      value: LoadNextLevel
       objectReference: {fileID: 0}
     - target: {fileID: 2177109920387564516, guid: e457c2c697962634386b2bad9b704081,
         type: 3}
@@ -8197,7 +8184,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh33402
+  m_Name: pb_Mesh29670
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2

@@ -37,7 +37,6 @@ public class Win : MonoBehaviour
         RemoveInputControllers();
         _timeManager.DoSlowmotion();
         SaveLevelAsPassed();
-        
     }
 
     private void SaveLevelAsPassed()
