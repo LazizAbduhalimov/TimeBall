@@ -16,10 +16,10 @@ TagManager:
   - UI
   - Enemy
   - Bullet
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Walls
+  - Settings
+  - Collectables
   - 
   - 
   - 
