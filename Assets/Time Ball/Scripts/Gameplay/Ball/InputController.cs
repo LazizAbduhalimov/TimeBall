@@ -44,7 +44,6 @@ public class InputController: MonoBehaviour
     {
         _direction = new Vector3(-_joystick.Vertical, 0, _joystick.Horizontal);
         _tragectoryLine.SetDirection(_direction.normalized);
-        
     }
 
     private void OnJoystickPointerUp()
