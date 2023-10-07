@@ -6811,6 +6811,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fpsLimiter: {fileID: 4306606771089592289}
+  _timeManager: {fileID: 8733609640338536312}
+  _slowmotionEffect: {fileID: 9202149337706719874}
   _ballConroller: {fileID: 6482110238733526493}
 --- !u!1001 &1109585420
 PrefabInstance:
@@ -10422,19 +10424,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7618422367950914496}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &801276021930630817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4879061104712483722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18d3d64ddae33d0478378b6624515f90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damage: 3
 --- !u!4 &805037013071644507
 Transform:
   m_ObjectHideFlags: 0
@@ -10829,18 +10818,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &3110362227551023950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4879061104712483722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b47eeaad258cf4549b37c981740ac315, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3202078506005198367
 GameObject:
   m_ObjectHideFlags: 0
@@ -10995,7 +10972,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d7bf5c9d2bbc8740bad5d7838cc37df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fpsLimit: 30
+  _fpsLimit: 60
 --- !u!23 &4532090119311152965
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11068,8 +11045,6 @@ GameObject:
   - component: {fileID: 5412673566363851558}
   - component: {fileID: 6482110238733526493}
   - component: {fileID: 6396259083131379247}
-  - component: {fileID: 3110362227551023950}
-  - component: {fileID: 801276021930630817}
   - component: {fileID: 7813476762986415432}
   - component: {fileID: 7813476762986415433}
   m_Layer: 0
@@ -11954,8 +11929,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _volume: {fileID: 131154302620780033}
-  _transitionTime: 0.1
-  _maxIntensity: 0
+  _transitionTime: 0.03
+  _maxIntensity: 0.5
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
