@@ -7,6 +7,8 @@ public class TragectoryLineRenderer : MonoBehaviour
 
     public bool IsActive => _tragectoryLine.gameObject.activeInHierarchy;
 
+    private void OnDisable() => Deactivate();
+
     public void Initialize()
     {
         _tragectoryLine.SetPosition(0, Vector3.zero);
@@ -16,9 +18,7 @@ public class TragectoryLineRenderer : MonoBehaviour
     public void Activate()
     {
         if (!IsActive)
-        {
             _tragectoryLine.gameObject.SetActive(true);
-        }
     }
 
     public void Deactivate()

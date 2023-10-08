@@ -584,13 +584,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2155254035357909995}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.31939706, y: 0.5495255, z: -0.23909414, w: -0.73405814}
-  m_LocalPosition: {x: 28.50978, y: 27.451103, z: -28.020693}
+  m_LocalRotation: {x: 0.31949925, y: -0.5486996, z: 0.2385814, w: 0.7347979}
+  m_LocalPosition: {x: 22, y: 25, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5639200940446190731}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 47, y: -73.5, z: 0}
 --- !u!20 &3824085006738747872
 Camera:
   m_ObjectHideFlags: 0
@@ -708,8 +708,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 8309086667967845662}
-  _offset: {x: 25, y: 25, z: -7}
-  _speed: 5
+  _offset: {x: 22, y: 25, z: -7}
+  _speed: 10
 --- !u!114 &8067066269072927095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2996,6 +2996,16 @@ PrefabInstance:
       propertyPath: _speed
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 6055164115366797693, guid: 94b862c4eb4c2334b9aa371265b42c10,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6055164115366797693, guid: 94b862c4eb4c2334b9aa371265b42c10,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6239300425249585792, guid: 94b862c4eb4c2334b9aa371265b42c10,
         type: 3}
       propertyPath: m_Mass
@@ -3081,12 +3091,12 @@ PrefabInstance:
     - target: {fileID: 8372699149667705446, guid: 94b862c4eb4c2334b9aa371265b42c10,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.8930063
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8372699149667705446, guid: 94b862c4eb4c2334b9aa371265b42c10,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.548
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8372699149667705446, guid: 94b862c4eb4c2334b9aa371265b42c10,
         type: 3}

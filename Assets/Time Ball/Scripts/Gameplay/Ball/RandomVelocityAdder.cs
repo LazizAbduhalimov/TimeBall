@@ -6,7 +6,7 @@ public class RandomVelocityAdder : MonoBehaviour
 {
     [SerializeField] private TimeManager _timeManager;
     [SerializeField] private float _slowmotionDuration = 0.1f;
-
+     
     private BallContoller _ballContoller;
 
     private void Awake()
