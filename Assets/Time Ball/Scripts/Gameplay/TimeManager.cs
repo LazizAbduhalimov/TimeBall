@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
 
 public class TimeManager : MonoBehaviour
@@ -9,10 +8,6 @@ public class TimeManager : MonoBehaviour
     public Action OnTimeUnslowedEvent;
 
     [SerializeField] private float _slowdownFactor = 0.05f;
-    [SerializeField] private float _smoothing = 0.1f;
-    [SerializeField] private const float _smoothingFactor = 10f;
-
-    private Coroutine _coroutine;
 
     public void StopTime()
     {
@@ -22,51 +17,14 @@ public class TimeManager : MonoBehaviour
 
     public void DoSlowmotion()
     {
-        if (_coroutine != null)
-            StopCoroutine( _coroutine );
-
-        _coroutine = StartCoroutine(SlowmotionRoutine());
+        Time.timeScale = _slowdownFactor;
         OnTimeSlowedEvent?.Invoke();
     }
 
     public void UndoSlowmotion()
     {
-        if (_coroutine != null)
-            StopCoroutine(_coroutine);
-
-        _coroutine = StartCoroutine(UnslowmotionRoutine());
+        Time.timeScale = 1f;
         OnTimeUnslowedEvent?.Invoke();
-    }
-  
-    private IEnumerator SlowmotionRoutine()
-    {
-        var waitingTime = _smoothing / _smoothingFactor;
-        var percentage = (1f - _slowdownFactor) / _smoothingFactor;
-        var waitingRealTime = new WaitForSecondsRealtime(waitingTime);
-
-        while (Time.timeScale > _slowdownFactor)
-        {
-            if (Time.timeScale - percentage <= _slowdownFactor)
-            {
-                Time.timeScale = _slowdownFactor;
-                break;
-            }
-            Time.timeScale -= percentage;
-            yield return waitingRealTime;
-        }
-    }
-
-    private IEnumerator UnslowmotionRoutine()
-    {
-        var waitingTime = _smoothing / _smoothingFactor;
-        var percentage = (1 - _slowdownFactor) / _smoothingFactor;
-        var waitingRealTime = new WaitForSecondsRealtime(waitingTime);
-        
-        while (Time.timeScale < 1)
-        {
-            Time.timeScale += percentage;
-            yield return waitingRealTime;
-        }
     }
 }
 

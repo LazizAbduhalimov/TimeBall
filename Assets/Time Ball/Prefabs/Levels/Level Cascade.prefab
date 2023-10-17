@@ -1396,7 +1396,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _slowdownFactor: 0.03
-  _smoothing: 0.1
 --- !u!1 &7413367655096783546
 GameObject:
   m_ObjectHideFlags: 0
