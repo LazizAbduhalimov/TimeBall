@@ -5,7 +5,6 @@ using UnityEngine.Rendering.Universal;
 public class SlowmotionEffect : MonoBehaviour
 {
     [SerializeField] private Volume _volume;
-    [SerializeField] private float _transitionTime = 1f;
 
     [Range(0f, 1f)]
     [SerializeField] private float _maxIntensity;
