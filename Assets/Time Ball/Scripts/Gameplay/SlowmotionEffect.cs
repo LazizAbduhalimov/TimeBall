@@ -22,12 +22,6 @@ public class SlowmotionEffect : MonoBehaviour
             Subscribe();
     }
 
-    private void Start()
-    {
-        _volume.profile.TryGet(out _chromaticAberration);   
-        _defaultIntensity = _chromaticAberration.intensity.value;
-    }
-
     private void OnDisable()
     {
         if (_isInitialized)
@@ -36,9 +30,11 @@ public class SlowmotionEffect : MonoBehaviour
 
     public void Initialize(TimeManager timeManager)
     {
+        _volume.profile.TryGet(out _chromaticAberration);   
+        _defaultIntensity = _chromaticAberration.intensity.value;
         _timeManager = timeManager;
-        Subscribe();
         _isInitialized = true;
+        Subscribe();
     }
 
     private void Subscribe()
