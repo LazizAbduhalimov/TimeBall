@@ -1,5 +1,54 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &554993104711201978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 97375506784842851}
+  - component: {fileID: 8162901517581231833}
+  m_Layer: 8
+  m_Name: Collision Effects Container
+  m_TagString: Untagged
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &97375506784842851
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554993104711201978}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8372699149667705446}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8162901517581231833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 554993104711201978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5c1d37bff84070429b54daa0aa965ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poolCount: 5
+  _autoExpand: 1
+  _poolObject: {fileID: 9122933809948457587, guid: 6398d43fe79ea0140913dc5530c646af,
+    type: 3}
+  _container: {fileID: 0}
 --- !u!1 &883371396274762391
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +60,7 @@ GameObject:
   - component: {fileID: 1785533614661834770}
   - component: {fileID: 5836682923692816756}
   - component: {fileID: 1346836760501692217}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tragectory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,13 +74,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 883371396274762391}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8372699149667705446}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &5836682923692816756
 LineRenderer:
@@ -159,7 +208,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8372699149667705446}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ball Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,6 +222,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6727012932682134069}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.548, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -180,8 +230,8 @@ Transform:
   m_Children:
   - {fileID: 6055164115366797693}
   - {fileID: 1785533614661834770}
+  - {fileID: 97375506784842851}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6790926288508052012
 GameObject:
@@ -199,7 +249,8 @@ GameObject:
   - component: {fileID: 4994435898253459337}
   - component: {fileID: 3936681213326709480}
   - component: {fileID: 1627324523601002247}
-  m_Layer: 0
+  - component: {fileID: 2827599273023645271}
+  m_Layer: 8
   m_Name: Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,14 +264,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6790926288508052012}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: -0.047999978, z: -21}
+  m_LocalPosition: {x: 0, y: -0.047999978, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2726487907415831398}
   m_Father: {fileID: 8372699149667705446}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &8206918566673474785
 SphereCollider:
@@ -251,7 +302,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6790926288508052012}
   serializedVersion: 4
-  m_Mass: 10
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -265,7 +316,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 4
@@ -282,7 +333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85bb122b3836bf5498766dc5d0fe1e38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0
+  _speed: 20
 --- !u!114 &6255598287557320279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,6 +386,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 3
+--- !u!114 &2827599273023645271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6790926288508052012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e38c146008db5194cbf6ee086850e6eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poolEffect: {fileID: 8162901517581231833}
 --- !u!1 &8111891554485224896
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,7 +411,7 @@ GameObject:
   - component: {fileID: 1050576410020227508}
   - component: {fileID: 2553233882420557539}
   - component: {fileID: 5648080156976570519}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BallGFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,13 +425,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8111891554485224896}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6055164115366797693}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1050576410020227508
 MeshFilter:
