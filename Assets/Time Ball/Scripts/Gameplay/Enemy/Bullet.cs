@@ -4,9 +4,9 @@ using System.Collections;
 
 public class Bullet : PoolObject
 {
-    [SerializeField] private ParticleSystem _collisionEffect;
     [SerializeField] private float _speed;
 
+    private CollisionEffectPool _collisionEffectPool;
     private Rigidbody _rigidbody;
     private TrailRenderer _trailRenderer;
 
@@ -14,6 +14,7 @@ public class Bullet : PoolObject
     {
         _rigidbody = GetComponent<Rigidbody>();
         _trailRenderer = GetComponentInChildren<TrailRenderer>();
+        _collisionEffectPool = transform.parent.GetComponentsInChildren<CollisionEffectPool>()[1];
     }
 
     private void OnEnable()
@@ -33,8 +34,7 @@ public class Bullet : PoolObject
         if(collision.transform.TryGetComponent<BallContoller>(out var controller))
             controller.Die();
 
-        Instantiate(_collisionEffect, transform.position, Quaternion.identity);
-
+        _collisionEffectPool.CreateObject(transform.position);
         gameObject.SetActive(false);
     }
 
@@ -42,7 +42,6 @@ public class Bullet : PoolObject
     {
         var cos = Mathf.Cos(transform.rotation.eulerAngles.y * Mathf.Deg2Rad);
         var sin = Mathf.Sin(transform.rotation.eulerAngles.y * Mathf.Deg2Rad);
-
         var direction = new Vector3(sin, 0, cos);
 
         _rigidbody.velocity = direction * _speed;
