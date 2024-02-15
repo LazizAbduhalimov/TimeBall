@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 
-public class FollowerInstance : MonoBehaviour
+public class FollowerInstance : Follower
 {
-    [SerializeField] private Transform _target;
-
     void LateUpdate()
     {
         Move();
@@ -11,6 +9,6 @@ public class FollowerInstance : MonoBehaviour
 
     public void Move()
     {
-        transform.position = _target.position;
+        transform.position = _target.position + _offset;
     }
 }
