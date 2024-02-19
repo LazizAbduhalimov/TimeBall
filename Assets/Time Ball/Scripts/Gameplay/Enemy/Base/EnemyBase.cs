@@ -26,7 +26,8 @@ public abstract class EnemyBase : MonoBehaviour, IEnemy
 
     public virtual void Die()
     {
-        Instantiate(_deathEffect, transform.position, Quaternion.identity);
+        if (_deathEffect != null)
+            Instantiate(_deathEffect, transform.position, Quaternion.identity);
         OnEnemyDieEvent?.Invoke(this);
         gameObject.SetActive(false);
     }

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[SelectionBase]
 public class Turret : EnemyBase
 {
     [Header("Unique properties")]
